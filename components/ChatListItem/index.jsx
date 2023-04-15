@@ -1,6 +1,8 @@
 import { Text, View, Image } from "react-native";
 import React from "react";
 import styles from "./style";
+import moment from "moment";
+
 const ChatListItem = (props) => {
     const { chatRoom } = props;
     const user = chatRoom.users[1];
@@ -27,7 +29,9 @@ const ChatListItem = (props) => {
                 </View>
             </View>
 
-            <Text style={styles.time}>yesterday</Text>
+            <Text style={styles.time}>
+                {moment(chatRoom.lastMessage.createdAt).format("DD/MM/YYYY")}
+            </Text>
         </View>
     );
 };

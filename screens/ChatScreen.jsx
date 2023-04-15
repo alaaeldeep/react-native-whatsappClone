@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 import ChatListItem from "../components/ChatListItem";
@@ -7,7 +7,12 @@ import ChatRooms from "../data/ChatRooms";
 const ChatScreen = () => {
     return (
         <View style={styles.container}>
-            <ChatListItem chatRoom={ChatRooms[0]} />
+            <FlatList
+                style={{ width: "100%" }}
+                data={ChatRooms}
+                renderItem={({ item }) => <ChatListItem chatRoom={item} />}
+                keyExtractor={(item) => item.id}
+            />
         </View>
     );
 };

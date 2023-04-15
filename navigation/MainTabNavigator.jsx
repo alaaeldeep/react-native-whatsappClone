@@ -4,6 +4,7 @@ import { Fontisto } from "@expo/vector-icons";
 import HomeScreen from "../screens/HomeScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import Colors from "../constant/Colors";
+import ChatScreen from "../screens/ChatScreen";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -38,7 +39,7 @@ function MyTabs() {
                     tabBarLabel: () => null,
                 }}
             />
-            <Tab.Screen name="Chats" component={HomeScreen} />
+            <Tab.Screen name="Chats" component={ChatScreen} />
             <Tab.Screen name="Status" component={SettingsScreen} />
             <Tab.Screen name="Calls" component={SettingsScreen} />
         </Tab.Navigator>

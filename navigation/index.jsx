@@ -1,12 +1,24 @@
 import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+    NavigationContainer,
+    useNavigation,
+    useRoute,
+} from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Colors from "../constant/Colors";
 
-import SettingsScreen from "../screens/SettingsScreen";
-import { View } from "react-native";
-import { Octicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { View, Image, Text, Pressable } from "react-native";
+import {
+    Octicons,
+    MaterialCommunityIcons,
+    AntDesign,
+    MaterialIcons,
+    FontAwesome5,
+} from "@expo/vector-icons";
+
 import MainTabNavigator from "./MainTabNavigator";
+import ChatRoomScreen from "../screens/ChatRoomScreen";
+
 export default function Navigation() {
     return (
         <NavigationContainer>
@@ -18,6 +30,10 @@ export default function Navigation() {
 const Stack = createStackNavigator();
 
 function MyStack() {
+    const navigate = useNavigation();
+    const goBack = () => {
+        navigate.goBack();
+    };
     return (
         <Stack.Navigator
             screenOptions={{
@@ -56,7 +72,67 @@ function MyStack() {
                 }}
                 component={MainTabNavigator}
             />
-            <Stack.Screen name="Settings" component={SettingsScreen} />
+            <Stack.Screen
+                name="ChatRoom"
+                component={ChatRoomScreen}
+                options={({ route }) => ({
+                    title: route.params.name,
+                    headerLeft: () => (
+                        <View
+                            style={{
+                                flexDirection: "row",
+                                alignItems: "center",
+                            }}
+                        >
+                            <Pressable
+                                style={{ marginHorizontal: 15 }}
+                                onPress={goBack}
+                            >
+                                <AntDesign
+                                    name="arrowleft"
+                                    size={22}
+                                    color="white"
+                                />
+                            </Pressable>
+
+                            <Image
+                                style={{
+                                    width: 45,
+                                    height: 45,
+                                    borderRadius: 45,
+                                }}
+                                source={route.params.img}
+                            />
+                        </View>
+                    ),
+                    headerRight: () => (
+                        <View
+                            style={{
+                                flexDirection: "row",
+                                width: 100,
+                                justifyContent: "space-between",
+                                marginRight: 7,
+                            }}
+                        >
+                            <MaterialIcons
+                                name="call"
+                                size={22}
+                                color={"white"}
+                            />
+                            <FontAwesome5
+                                name="video"
+                                size={22}
+                                color={"white"}
+                            />
+                            <MaterialCommunityIcons
+                                name="dots-vertical"
+                                size={22}
+                                color={"white"}
+                            />
+                        </View>
+                    ),
+                })}
+            />
         </Stack.Navigator>
     );
 }

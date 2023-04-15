@@ -1,8 +1,7 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { useColorScheme } from "react-native";
 import { Fontisto } from "@expo/vector-icons";
-import HomeScreen from "../screens/HomeScreen";
-import SettingsScreen from "../screens/SettingsScreen";
+
 import Colors from "../constant/Colors";
 import ChatScreen from "../screens/ChatScreen";
 
@@ -30,7 +29,7 @@ function MyTabs() {
         >
             <Tab.Screen
                 name="Camera"
-                component={HomeScreen}
+                component={ChatScreen}
                 tabBarItemStyle={{ width: 20 }}
                 options={{
                     tabBarIcon: () => (
@@ -40,8 +39,8 @@ function MyTabs() {
                 }}
             />
             <Tab.Screen name="Chats" component={ChatScreen} />
-            <Tab.Screen name="Status" component={SettingsScreen} />
-            <Tab.Screen name="Calls" component={SettingsScreen} />
+            <Tab.Screen name="Status" component={ChatScreen} />
+            <Tab.Screen name="Calls" component={ChatScreen} />
         </Tab.Navigator>
     );
 }

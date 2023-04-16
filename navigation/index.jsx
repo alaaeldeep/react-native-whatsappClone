@@ -18,6 +18,7 @@ import {
 
 import MainTabNavigator from "./MainTabNavigator";
 import ChatRoomScreen from "../screens/ChatRoomScreen";
+import ContactScreen from "../screens/ContactScreen";
 
 export default function Navigation() {
     return (
@@ -133,6 +134,7 @@ function MyStack() {
                     ),
                 })}
             />
+            <Stack.Screen name="contact" component={ContactScreen} />
         </Stack.Navigator>
     );
 }
